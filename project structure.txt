@@ -1,0 +1,11 @@
+ShopBot/
+├── shopbot_env/          ← Virtual environment (ignored by git)
+├── main.py               ← Streamlit app
+├── query_parser.py       ← Natural language to structured info
+├── fetch_products.py     ← Scrape or fetch from Amazon/Flipkart
+├── ranker.py             ← Rank products based on constraints
+├── explainer.py          ← GPT-powered explanation module
+├── utils.py              ← Any helper functions
+├── requirements.txt      ← To store dependencies
+├── .gitignore
+└── README.md
