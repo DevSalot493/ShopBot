@@ -36,7 +36,6 @@ def parse_query(query: str) -> dict:
         if attr in found_products:
             found_products.remove(attr)
 
-    # Fix price extraction regex (non-capturing group)
     price_pattern = r'(?:\₹|rs|rupees)\s?[\d,]+'
     prices_found = re.findall(price_pattern, query_lower, flags=re.IGNORECASE)
 
@@ -45,17 +44,3 @@ def parse_query(query: str) -> dict:
         "attributes": list(set(found_attributes)),
         "prices": prices_found
     }
-
-
-# Test
-queries = [
-    "Need a phone with a great camera and display",
-    "I want a gaming laptop under ₹80,000 with good battery life",
-    "Looking for a refrigerator with inverter technology",
-    "Smartwatch with fitness tracking under Rs 5000"
-]
-
-for q in queries:
-    print(f"Query: {q}")
-    print("Parsed:", parse_query(q))
-    print("-" * 40)
