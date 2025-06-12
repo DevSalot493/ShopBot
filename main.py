@@ -1,18 +1,20 @@
 from query_parser import parse_query
 from fetch_all_products import fetch_all_products
 
-# 🔧 Your test query (change this line to test other inputs)
-query = "I want a gaming laptop under ₹80,000 with good battery life"
+if __name__ == "__main__":
+    # 🔧 Replace input() with test string
+    test_query = "gaming laptop under 80000 with good battery"
+    parsed = parse_query(test_query)
 
-parsed = parse_query(query)
-print("🔍 Parsed Query:", parsed)
+    print(f"\n🔍 Parsed Query: {parsed}\n")
+    print("🔎 Searching Amazon...\n")
 
-results = fetch_all_products(parsed)
+    results = fetch_all_products(parsed)
 
-print("\n🛍️ Product Results:")
-for product in results:
-    print(f"{product['source']} - {product['title']}")
-    print(f"Price: ₹{product['price']}, Rating: {product['rating']}")
-    print(f"URL: {product['url']}")
-    print(f"Attributes: {product['attributes']}")
-    print("-" * 40)
+    if not results:
+        print("❌ No results found.")
+    else:
+        for i, product in enumerate(results[:10], start=1):  # Show top 10
+            print(f"{i}. 🛍️ {product['title']}")
+            print(f"   💰 {product['price']} | ⭐ {product['rating']}")
+            print(f"   🔗 {product['url']}\n")
